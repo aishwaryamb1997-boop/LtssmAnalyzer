@@ -1,0 +1,115 @@
+﻿<Window x:Class="LtssmAnalyzer.Wpf.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="LTSSM Analyzer"
+        Height="600"
+        Width="900">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- ========================= -->
+        <!-- LTSSM Transitions Grid -->
+        <!-- ========================= -->
+        <GroupBox Header="LTSSM Transitions" Grid.Row="0">
+            <DataGrid ItemsSource="{Binding Transitions}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="From"
+                                        Binding="{Binding FromState}" />
+                    <DataGridTextColumn Header="To"
+                                        Binding="{Binding ToState}" />
+                    <DataGridTextColumn Header="Duration (ms)"
+                                        Binding="{Binding DurationMs}" />
+                    <DataGridTextColumn Header="Gen"
+                                        Binding="{Binding LinkSpeed}" />
+                    <DataGridTextColumn Header="Port"
+                                        Binding="{Binding Port}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
+        <!-- ========================= -->
+        <!-- LTSSM Timeline -->
+        <!-- ========================= -->
+        <GroupBox Header="LTSSM Timeline"
+          Grid.Row="1"
+          Margin="0,10,0,0">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Lane Labels -->
+                <StackPanel Grid.Column="0"
+                    Margin="5,40,5,0">
+                    <TextBlock Text="Upstream"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       Margin="0,10,0,25"/>
+                    <TextBlock Text="Downstream"
+                       Foreground="White"
+                       FontWeight="Bold"/>
+                </StackPanel>
+
+                <!-- Time Axis + Timeline -->
+                <ScrollViewer Grid.Column="1"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Disabled">
+
+                    <StackPanel>
+
+                        <!-- Time Axis (unchanged) -->
+                        <Canvas x:Name="TimeAxisCanvas"
+                        Height="30"
+                        Background="#2D2D2D"/>
+
+                        <!-- 🔑 Layered Timeline Area -->
+                        <Grid>
+
+                            <!-- Background grid / shaded regions -->
+                            <Canvas x:Name="GridCanvas"
+                            Height="140"
+                            Background="#1E1E1E"/>
+
+                            <!-- Foreground LTSSM bars & markers -->
+                            <Canvas x:Name="TimelineCanvas"
+                            Height="140"
+                            IsHitTestVisible="True"/>
+
+                        </Grid>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </GroupBox>
+
+
+
+        <!-- ========================= -->
+        <!-- Time Per State Metrics -->
+        <!-- ========================= -->
+        <GroupBox Header="Time per State"
+                  Grid.Row="2"
+                  Margin="0,10,0,0">
+            <DataGrid ItemsSource="{Binding StateMetrics}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="State"
+                                        Binding="{Binding State}" />
+                    <DataGridTextColumn Header="Time (ms)"
+                                        Binding="{Binding TimeMs}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
+    </Grid>
+</Window>

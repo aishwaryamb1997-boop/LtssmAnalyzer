@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../LtssmAnalyzer.Core/LtssmAnalyzer.Core/LtssmAnalyzer.Core.csproj" Id="6fd50f8c-8e3c-4d7d-9c8c-656726cb0123" />
+  <Project Path="LtssmAnalyzer.Wpf/LtssmAnalyzer.Wpf.csproj" Id="bd911849-27f9-45a6-9417-4007b50cade8" />
+</Solution>
