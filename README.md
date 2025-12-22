@@ -84,10 +84,7 @@ Embedded and system software engineers
 
 Developers building visualization tools for hardware protocols
 
-📜 License
 
-This project is currently shared for learning, demonstration, and portfolio purposes.
-Licensing terms can be added as the project matures.
 
 👤 Author
 
